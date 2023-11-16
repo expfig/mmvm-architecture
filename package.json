@@ -1,0 +1,58 @@
+{
+  "name": "mvvm_architecture",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "lint": "eslint .",
+    "start": "react-native start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.19.3",
+    "@react-navigation/native": "^6.1.7",
+    "@react-navigation/native-stack": "^6.9.13",
+    "@regulaforensics/react-native-face-api": "^5.2.1",
+    "@regulaforensics/react-native-face-core": "^5.2.0",
+    "@sentry/react-native": "^5.9.1",
+    "@supabase/supabase-js": "^2.33.2",
+    "axios": "^1.4.0",
+    "deprecated-react-native-prop-types": "^4.2.1",
+    "phosphor-react-native": "^1.1.2",
+    "react": "*",
+    "react-native": "*",
+    "react-native-background-actions": "^3.0.0",
+    "react-native-credit-card-input": "^0.4.1",
+    "react-native-image-picker": "^5.6.0",
+    "react-native-reanimated": "^3.4.2",
+    "react-native-safe-area-context": "^4.7.1",
+    "react-native-screens": "^3.24.0",
+    "react-native-svg": "^13.13.0",
+    "react-native-swipe-list-view": "^3.2.9",
+    "react-native-url-polyfill": "^2.0.0",
+    "react-native-vision-camera": "^2.15.6",
+    "ws-ui-components": "^1.1.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@babel/preset-env": "^7.20.0",
+    "@babel/runtime": "^7.20.0",
+    "@react-native/eslint-config": "^0.72.2",
+    "@react-native/metro-config": "^0.72.7",
+    "@tsconfig/react-native": "^3.0.0",
+    "@types/metro-config": "^0.76.3",
+    "@types/react": "*",
+    "axios-mock-adapter": "^1.21.5",
+    "babel-jest": "^29.2.1",
+    "eslint": "^8.19.0",
+    "jest": "^29.2.1",
+    "metro-react-native-babel-preset": "0.76.5",
+    "prettier": "^2.4.1",
+    "react-test-renderer": "18.2.0",
+    "typescript": "4.8.4"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
