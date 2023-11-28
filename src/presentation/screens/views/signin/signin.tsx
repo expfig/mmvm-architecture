@@ -13,8 +13,6 @@ import {
 
 import {useNavigation} from '@react-navigation/native';
 
-import {TextNativeWs} from 'ws-ui-components';
-
 import {
   User,
   Eye,
@@ -27,6 +25,8 @@ import {
 import {useLoginViewModel} from '../../view-model/signin/use-login-view-modal';
 
 import {InputWs} from '../../../components/input/input';
+
+import {handleGetAllProducts} from '../../../../domain/usecases/product/product-usecases';
 
 const SigninView = () => {
   const {navigate} = useNavigation();
@@ -50,18 +50,11 @@ const SigninView = () => {
       <ScrollView style={{marginTop: 80}}>
         <View style={styles.logo}>
           <ChatCircleDots size={100} color="#7e1284" />
-          <View>
-            <Text>kkk</Text>
-          </View>
-          <TextNativeWs
-            text="Social Expfig"
-            color={'#FFF'}
-            fontWeight="600"
-            marginTop={8}
-          />
+
+          <Text style={styles.textSocialFig}>Social Expfig</Text>
         </View>
         <View style={styles.header}>
-          <TextNativeWs text="Faça seu Login" color={'#FFF'} fontWeight="600" />
+          <Text style={styles.text_login}>Faça seu Login</Text>
         </View>
 
         <View style={styles.input}>
@@ -133,19 +126,9 @@ const SigninView = () => {
             disabled={isLoading}
             style={styles.button}>
             {isLoading ? (
-              <TextNativeWs
-                text="Carregando..."
-                color={'#FFF'}
-                fontWeight="500"
-                size={16}
-              />
+              <Text style={styles.text_login}>Carregando...</Text>
             ) : (
-              <TextNativeWs
-                text="Login"
-                color={'#FFF'}
-                fontWeight="500"
-                size={16}
-              />
+              <Text style={styles.text_login}>Login</Text>
             )}
           </TouchableOpacity>
         </View>
@@ -153,12 +136,7 @@ const SigninView = () => {
         <View style={styles.wrapperCreateAccount}>
           {/**@ts-ignore */}
           <TouchableOpacity onPress={() => navigate('RegisterUserView')}>
-            <TextNativeWs
-              text="Ainda não possui conta?"
-              color={'#FFF'}
-              fontWeight="300"
-              size={14}
-            />
+            <Text style={styles.text_login}>Ainda não possui conta?</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -173,6 +151,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: 'rgb(26, 20, 31)',
   },
+  textSocialFig: {
+    color: '#fff',
+    fontWeight: '600',
+    marginTop: 6,
+    fontSize: 26,
+  },
   logo: {
     width: '100%',
     alignItems: 'center',
@@ -180,6 +164,10 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 16,
+  },
+  text_login: {
+    color: '#fff',
+    fontWeight: '400',
   },
   input: {
     marginBottom: 16,
@@ -198,6 +186,11 @@ const styles = StyleSheet.create({
     height: 45,
     alignItems: 'center',
     justifyContent: 'flex-end',
+  },
+  textCreateAccount: {
+    color: '#fff',
+    fontWeight: '300',
+    fontSize: 14,
   },
 });
 /**

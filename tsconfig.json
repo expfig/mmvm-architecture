@@ -1,3 +1,37 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json"
+  "extends": "@tsconfig/react-native/tsconfig.json", /* Base React Native TSConfig recomendada */
+  "compilerOptions": {
+    "types": [
+      "@types/styled-components-react-native",
+      "@types/jest"
+    ], /* Tipo das ferramentas utilizadas no projeto */
+    "isolatedModules": true,
+    "lib": [
+      "es2017"
+    ], /* Especifique os arquivos de biblioteca a serem incluídos na compilação. */
+    "preserveSymlinks": false,
+    "target": "es5",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "baseUrl": "./", /*BaseUrl é o ponto de partida, considerando o local do arquivo tsconfig.json dentro do projeto.*/
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "jsx": "react-native",
+  },
+  "include": [
+    "./**/*",
+  ],
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "assets",
+  ]
 }
