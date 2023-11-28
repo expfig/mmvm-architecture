@@ -8,11 +8,12 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Text,
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
-import {TextNativeWs, InputWs} from 'ws-ui-components';
+import {TextNativeWs} from 'ws-ui-components';
 
 import {
   User,
@@ -24,6 +25,8 @@ import {
 
 // hook-view-modal
 import {useLoginViewModel} from '../../view-model/signin/use-login-view-modal';
+
+import {InputWs} from '../../../components/input/input';
 
 const SigninView = () => {
   const {navigate} = useNavigation();
@@ -47,6 +50,9 @@ const SigninView = () => {
       <ScrollView style={{marginTop: 80}}>
         <View style={styles.logo}>
           <ChatCircleDots size={100} color="#7e1284" />
+          <View>
+            <Text>kkk</Text>
+          </View>
           <TextNativeWs
             text="Social Expfig"
             color={'#FFF'}
@@ -63,7 +69,6 @@ const SigninView = () => {
             name="email"
             height={50}
             heightWrapperIcon={50}
-            // heighBorderIconColor={onFocusedEmail ? '#7e1284' : '#cdcdcd80'}
             textLabel="E-mail"
             textAlign="left"
             colorTextLabel="#6c757d"

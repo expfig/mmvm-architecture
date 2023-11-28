@@ -1,20 +1,24 @@
 /**
  * IMPORTS
  */
-import React from "react";
-import { TextInput, View, Text, TouchableOpacity } from "react-native";
+import React from 'react';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 
 // typings
-import { IInputNativeWs, ITextInputProps } from "./interface";
+import {IInputNativeWs} from './interface';
 
-// styles
-import { styles } from "./styles";
+import {styles} from './styles';
 
+/**
+ * Componente InputWs para a interação da  ui.
+ */
 const InputWs = ({
-  testID = "component-inputWs",
+  name,
   width,
   height,
   textLabel,
+  visiblityPassword,
+  right,
   borderWidth,
   borderColor,
   borderRadius,
@@ -24,13 +28,20 @@ const InputWs = ({
   colorTextLabel,
   lineHeight,
   letterSpacing,
+  heightWrapperIcon,
   rightIconJsx,
+  rightIconPasswordJsx,
+  leftIconJsx,
+  onPressVisiblityPassword,
   ...res
 }: IInputNativeWs) => {
   const dataPropsStyles = {
+    name,
     width,
     height,
     textLabel,
+    visiblityPassword,
+    right,
     borderWidth,
     borderColor,
     borderRadius,
@@ -40,28 +51,67 @@ const InputWs = ({
     colorTextLabel,
     lineHeight,
     letterSpacing,
+    heightWrapperIcon,
+    rightIconPasswordJsx,
+
+    onPressVisiblityPassword,
+    ...res,
   } as IInputNativeWs;
-
-
   return (
-    <View 
-    style={{position: 'relative'}}
-    >
-      {textLabel && <Text style={styles(dataPropsStyles).textLabel}>{textLabel}:</Text>}
-      <TextInput
-        style={styles(dataPropsStyles).inputWs}
-        testID={testID}
-        {...res}
-      />
-      
-     <TouchableOpacity style={{position: 'absolute', right: 0, top: 28, backgroundColor: 'transparent', height: 49, width: 60, alignItems: 'center', justifyContent: 'center'}}>
-       {rightIconJsx}
-     </TouchableOpacity>
-    </View>
+    <>
+      {textLabel && (
+        <View
+          style={{
+            width: '100%',
+          }}>
+          <Text style={styles(dataPropsStyles).textLabel}>{textLabel}:</Text>
+        </View>
+      )}
+
+      <View style={styles().containerInput}>
+        <TextInput {...res} style={styles(dataPropsStyles).input} />
+
+        {leftIconJsx && (
+          <View
+            style={
+              //@ts-ignore
+              styles({
+                heightWrapperIcon: heightWrapperIcon,
+              }).wrapprerIcon
+            }>
+            {leftIconJsx}
+          </View>
+        )}
+
+        {rightIconJsx && (
+          <View style={styles(dataPropsStyles).wrapprerIconExpiressAndCode}>
+            {rightIconJsx}
+          </View>
+        )}
+
+        {name === 'password' && rightIconPasswordJsx && (
+          <>
+            {visiblityPassword ? (
+              <View style={styles(dataPropsStyles).wrapprerRightIcon}>
+                <TouchableOpacity onPress={onPressVisiblityPassword}>
+                  {rightIconPasswordJsx}
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <View style={styles(dataPropsStyles).wrapprerRightIcon}>
+                <TouchableOpacity onPress={onPressVisiblityPassword}>
+                  {rightIconPasswordJsx}
+                </TouchableOpacity>
+              </View>
+            )}
+          </>
+        )}
+      </View>
+    </>
   );
 };
 
 /**
  * EXPORTS
  */
-export { InputWs };
+export {InputWs};
