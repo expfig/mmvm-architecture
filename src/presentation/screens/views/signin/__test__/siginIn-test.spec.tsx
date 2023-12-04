@@ -49,7 +49,7 @@ describe('Teste para tela de Login', () => {
     expect(inputPasswordElement.props.value).toBe('12345678');
   });
 
-  it('Deve ser possível encontar o botão de login para logar usuário', () => {
+  it('Deve ser possível clilcar no botão e fazer login de', () => {
     const {getByTestId, getByText} = render(<SigninView />);
 
     const elementButton = getByTestId(TEST_ID.buttonSign);
@@ -57,7 +57,7 @@ describe('Teste para tela de Login', () => {
     const textLogin = getByText('Login');
 
     // //precisionar o botão de login para a authentição do usuári.
-    // fireEvent.press(elementButton);
+    fireEvent.press(elementButton);
 
     expect(textLogin).toBeTruthy();
   });
