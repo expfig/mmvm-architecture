@@ -1,47 +1,35 @@
-import React, {useState} from 'react';
-import {handleSigninWhithEmailAndPassword} from '../../../../domain/usecases/user-auth/user-auth-usecases';
-import {handleGetUserInfo} from '../../../../domain/usecases/user-get-info/user-get-info';
+import {useState} from 'react';
+
 import {useNavigation} from '@react-navigation/native';
 
-interface LoginViewModal {
-  email: string;
-  password: string;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-  setPassword: React.Dispatch<React.SetStateAction<string>>;
-  setIsVisibilityPassword: React.Dispatch<React.SetStateAction<boolean>>;
-  isVisibilityPasswords: boolean;
-  setOnFocusedEmail: React.Dispatch<React.SetStateAction<boolean>>;
-  onFocusedEmail: boolean;
-  setOnFocusedPassword: React.Dispatch<React.SetStateAction<boolean>>;
-  onFocusedPassword: boolean;
-  isLoading: boolean;
-  onSubmit: () => void;
-}
+import { LoginViewModal } from './interface';
+import { UserAuth } from '../../../../presentation/hooks/user-auth/user-auth';
+
 
 const useLoginViewModel = (): LoginViewModal => {
   const {navigate} = useNavigation();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { login }= UserAuth()
+
+  const [usuario, setUsuario] = useState('');
+  const [senha, setSenha] = useState('');
+
   const [isLoading, setIsLoading] = useState(false);
   const [isVisibilityPasswords, setIsVisibilityPassword] = useState(true);
+  
   const [onFocusedEmail, setOnFocusedEmail] = useState(false);
   const [onFocusedPassword, setOnFocusedPassword] = useState(false);
 
   const onSubmit = async () => {
     try {
       setIsLoading(true);
-      // const response = await handleSigninWhithEmailAndPassword({
-      //   email: email,
-      //   password: password,
-      // });
-      const response = await handleGetUserInfo();
-      console.log('response', response.data);
+      await login({usuario, senha})
+      
+    //@ts-ignore
+      navigate('HomeView');
     } catch (error) {
-      console.log('response', error);
+      new Error("Falha ao fazer login!")
     } finally {
       setIsLoading(false);
-      //@ts-ignore
-      navigate('FacialRecognitionView');
     }
   };
 
@@ -49,10 +37,10 @@ const useLoginViewModel = (): LoginViewModal => {
    * DATA BINDING WITH SCRREM
    */
   return {
-    email,
-    setEmail,
-    password,
-    setPassword,
+    usuario,
+    setUsuario,
+    senha,
+    setSenha,
     isLoading,
     onSubmit,
     isVisibilityPasswords,
@@ -61,6 +49,7 @@ const useLoginViewModel = (): LoginViewModal => {
     onFocusedEmail,
     setOnFocusedPassword,
     onFocusedPassword,
+    navigate
   };
 };
 

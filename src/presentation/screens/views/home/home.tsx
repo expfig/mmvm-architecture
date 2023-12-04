@@ -2,20 +2,19 @@
  * IMPORTS
  */
 import React from 'react';
-import {SafeAreaView, View, StyleSheet, Image} from 'react-native';
+import {SafeAreaView, View, Image} from 'react-native';
 
 // hook-view-modal
-import {useLoginViewModel} from '../../view-model/signin/use-login-view-modal';
-import {usePermissions} from '../../../../domain/hooks/permissions/permissions';
 import {TextNativeWs} from 'ws-ui-components';
 import {MagnifyingGlass} from 'phosphor-react-native';
+import {styles} from './styles';
 
 const HomeView = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <TextNativeWs
-          text="Pagina Inicial"
+          text="Conversas"
           size={32}
           lineHeight={38}
           color={'#FFF'}
@@ -40,41 +39,6 @@ const HomeView = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    paddingHorizontal: 20,
-    backgroundColor: 'rgb(26, 20, 31)',
-  },
-  header: {
-    width: '100%',
-    height: 70,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  wrapperImageAndText: {
-    width: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  wrapperImage: {
-    width: 54,
-    height: 54,
-    borderRadius: 25,
-    borderWidth: 2,
-    borderColor: '#7e1284',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-  },
-});
 /**
  * EXPORT
  */

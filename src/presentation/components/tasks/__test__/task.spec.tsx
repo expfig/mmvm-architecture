@@ -13,37 +13,47 @@ import {rest} from 'msw';
 import {setupServer} from 'msw/node';
 
 import {Tasks} from '..';
+import {mock} from '../../../../mock/mock';
 
 describe('Task Component', () => {
-  const worker = setupServer(
-    rest.get(
-      'https://jsonplaceholder.typicode.com/todos',
-      async (request, response, context) => {
-        return response(
-          context.json([
-            {
-              id: '1',
-              title: 'Correr 10 minutos',
-            },
-          ]),
-        );
-      },
-    ),
-  );
-  beforeAll(() => {
-    worker.listen();
-  });
+  // const worker = setupServer(
+  //   rest.get(
+  //     'https://jsonplaceholder.typicode.com/todos',
+  //     async (request, response, context) => {
+  //       return response(
+  //         context.json([
+  //           {
+  //             id: '1',
+  //             title: 'Correr 10 minutos',
+  //           },
+  //         ]),
+  //       );
+  //     },
+  //   ),
+  // );
+  // beforeAll(() => {
+  //   worker.listen();
+  // });
 
-  // limpando todo handle antes de qualquer teste
-  beforeAll(() => {
-    worker.resetHandlers();
-  });
+  // // limpando todo handle antes de qualquer teste
+  // beforeAll(() => {
+  //   worker.resetHandlers();
+  // });
 
   it('should fetch and show task on button click', async () => {
     render(<Tasks />);
 
     // procurando pelo botão pelo texto
     const elementButton = screen.getByText(/Buscar atividades/i);
+
+    mock.mockAxios
+      .onGet('https://jsonplaceholder.typicode.com/todos?_limit=10')
+      .reply(200, [
+        {
+          id: '1',
+          title: 'Correr 10 minutos',
+        },
+      ]);
 
     // vamos fazer  um onclick no botão
     fireEvent.press(elementButton);

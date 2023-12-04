@@ -4,7 +4,7 @@
 import {type AxiosRequestConfig} from 'axios';
 
 const configAxios: AxiosRequestConfig = {
-  baseURL: 'https://fakestoreapi.com',
+  baseURL: 'http://grupofigueiredo.com.br:1111/jornada_mobile',
   // timeout: 10000,
 };
 

@@ -26,12 +26,7 @@ const AppOpenRoutesStacks = () => {
         }}>
         <Stack.Screen name="SigninView" component={SigninView} />
         <Stack.Screen name="RegisterUserView" component={RegisterUserView} />
-        <Stack.Screen
-          name="FacialRecognitionView"
-          component={FacialRecognitionView}
-        />
         <Stack.Screen name="HomeView" component={HomeView} />
-        <Stack.Screen name="SwipeListingView" component={SwipeListingView} />
       </Stack.Navigator>
     </NavigationContainer>
   );

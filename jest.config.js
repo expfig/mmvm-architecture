@@ -6,7 +6,7 @@ module.exports={
   // Indica se as informações de cobertura devem ser coletadas durante a execução do teste
   collectCoverage: false,
 
-  testTimeout: 60000,
+  testTimeout: 10000,
 
   // Uma matriz de padrões glob indicando um conjunto de arquivos para os quais as informações de cobertura devem ser coletadas
   collectCoverageFrom: ['src/**/*.tsx', '!src/**/*.spec.tsx'],
@@ -48,5 +48,7 @@ module.exports={
   //     '^.+\\.svg$': 'jest-svg-transformer',
   // },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  
+  // moduleNameMapper: {
+  //   axios: 'axios/dist/node/axios.cjs',
+  // },
 };

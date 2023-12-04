@@ -18,8 +18,8 @@ const handleAuthUser = async ({email, password}: ILoginDTO) => {
   ).post(
     `login`,
     {
-      email: 'LUCELIO.LAGE@MOTORISTAFIGUEIREDO.COM.BR',
-      password: 'sgt20@ef',
+      usuario: 'LUCELIO.LAGE',
+      senha: 'sgt20@ef',
     },
     {
       headers: {'content-type': 'application/json'},

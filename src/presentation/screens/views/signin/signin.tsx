@@ -6,12 +6,9 @@ import {
   SafeAreaView,
   View,
   TouchableOpacity,
-  StyleSheet,
   ScrollView,
   Text,
 } from 'react-native';
-
-import {useNavigation} from '@react-navigation/native';
 
 import {
   User,
@@ -26,15 +23,16 @@ import {useLoginViewModel} from '../../view-model/signin/use-login-view-modal';
 
 import {InputWs} from '../../../components/input/input';
 
-import {handleGetAllProducts} from '../../../../domain/usecases/product/product-usecases';
+import {TEST_ID} from '../../../../common/constants/testId/test-id';
+
+import {styles} from './styles';
 
 const SigninView = () => {
-  const {navigate} = useNavigation();
   const {
-    email,
-    password,
-    setEmail,
-    setPassword,
+    usuario,
+    setUsuario,
+    senha,
+    setSenha,
     isLoading,
     onSubmit,
     setIsVisibilityPassword,
@@ -43,33 +41,39 @@ const SigninView = () => {
     onFocusedEmail,
     setOnFocusedPassword,
     onFocusedPassword,
+    navigate,
   } = useLoginViewModel();
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={{marginTop: 80}}>
-        <View style={styles.logo}>
+        {/**LOGO */}
+        <View testID={TEST_ID.logoSignin} style={styles.logo}>
           <ChatCircleDots size={100} color="#7e1284" />
 
           <Text style={styles.textSocialFig}>Social Expfig</Text>
         </View>
+
+        {/**HEADER */}
         <View style={styles.header}>
           <Text style={styles.text_login}>Faça seu Login</Text>
         </View>
 
+        {/**INPUTS */}
         <View style={styles.input}>
           <InputWs
-            name="email"
+            testID="usuario-input"
+            name="usuario"
             height={50}
             heightWrapperIcon={50}
-            textLabel="E-mail"
+            textLabel="Usuario"
             textAlign="left"
             colorTextLabel="#6c757d"
             fontSize={18}
             fontWeight="500"
-            onChangeText={setEmail}
-            value={email}
-            placeholder="Digite seu e-mail"
+            onChangeText={setUsuario}
+            value={usuario}
+            placeholder="Digite seu usuário"
             borderWidth={onFocusedEmail ? 2 : 1}
             borderColor={onFocusedEmail ? '#7e1284' : '#cdcdcd80'}
             onFocus={() => setOnFocusedEmail(!onFocusedEmail)}
@@ -85,6 +89,7 @@ const SigninView = () => {
 
         <View style={styles.input}>
           <InputWs
+            testID="senha-input"
             name="password"
             height={50}
             heightWrapperIcon={50}
@@ -102,8 +107,8 @@ const SigninView = () => {
             placeholder="***********"
             secureTextEntry={isVisibilityPasswords}
             visiblityPassword={isVisibilityPasswords}
-            onChangeText={setPassword}
-            value={password}
+            onChangeText={setSenha}
+            value={senha}
             placeholderTextColor={'#cdcdcd80'}
             leftIconJsx={<LockKey color="#FFFFFF" size={24} />}
             right={0}
@@ -120,8 +125,10 @@ const SigninView = () => {
           />
         </View>
 
+        {/**ACTION LOGIN */}
         <View>
           <TouchableOpacity
+            testID={TEST_ID.buttonSign}
             onPress={onSubmit}
             disabled={isLoading}
             style={styles.button}>
@@ -133,6 +140,7 @@ const SigninView = () => {
           </TouchableOpacity>
         </View>
 
+        {/**FOOTER */}
         <View style={styles.wrapperCreateAccount}>
           {/**@ts-ignore */}
           <TouchableOpacity onPress={() => navigate('RegisterUserView')}>
@@ -144,55 +152,6 @@ const SigninView = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-    backgroundColor: 'rgb(26, 20, 31)',
-  },
-  textSocialFig: {
-    color: '#fff',
-    fontWeight: '600',
-    marginTop: 6,
-    fontSize: 26,
-  },
-  logo: {
-    width: '100%',
-    alignItems: 'center',
-    marginBottom: 80,
-  },
-  header: {
-    marginBottom: 16,
-  },
-  text_login: {
-    color: '#fff',
-    fontWeight: '400',
-  },
-  input: {
-    marginBottom: 16,
-  },
-  button: {
-    width: '100%',
-    height: 45,
-    backgroundColor: '#7e1284',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 4,
-    marginTop: 16,
-  },
-  wrapperCreateAccount: {
-    width: '100%',
-    height: 45,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-  },
-  textCreateAccount: {
-    color: '#fff',
-    fontWeight: '300',
-    fontSize: 14,
-  },
-});
 /**
  * EXPORT
  */
